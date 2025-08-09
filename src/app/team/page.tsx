@@ -1,128 +1,103 @@
 'use client'
 
-import { useState } from 'react'
-import { Linkedin, Twitter, Github, Mail, Award, Users, Brain, Code, Briefcase, Globe } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Users, Award, Globe, Linkedin, Twitter, Github, Mail, MapPin, Calendar, TrendingUp } from 'lucide-react'
 
 const TeamPage = () => {
+  const [mounted, setMounted] = useState(false)
   const [activeCategory, setActiveCategory] = useState('core')
 
-  const categories = [
-    { id: 'core', label: '核心团队', icon: Users },
-    { id: 'advisors', label: '顾问团队', icon: Award },
-    { id: 'investors', label: '投资机构', icon: Briefcase }
-  ]
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const teamStats = {
+    totalMembers: 45,
+    countries: 12,
+    experience: '8+',
+    projects: '50+'
+  }
 
   const coreTeam = [
     {
       name: 'Alex Chen',
       role: '创始人 & CEO',
-      avatar: '/api/placeholder/150/150',
-      bio: '前腾讯游戏高级架构师，10年游戏行业经验，区块链技术专家',
-      expertise: ['游戏架构', '区块链技术', '产品战略', '团队管理'],
-      education: 'MIT计算机科学硕士',
-      experience: '腾讯游戏 • Google • 斯坦福研究院',
+      avatar: '👨‍💼',
+      bio: '前腾讯游戏高级架构师，拥有10年游戏行业经验，区块链技术专家',
+      experience: '10年游戏开发经验',
+      education: '清华大学计算机科学硕士',
+      achievements: ['领导开发多款月活千万级游戏', '区块链技术专利持有者', 'Forbes 30 Under 30'],
       social: {
         linkedin: 'https://linkedin.com/in/alexchen',
         twitter: 'https://twitter.com/alexchen',
         github: 'https://github.com/alexchen'
-      },
-      achievements: [
-        '主导开发了3款DAU超千万的游戏',
-        '发表15篇区块链技术论文',
-        '获得8项游戏技术专利'
-      ]
+      }
     },
     {
       name: 'Sarah Kim',
-      role: '联合创始人 & CTO',
-      avatar: '/api/placeholder/150/150',
-      bio: 'AI算法专家，前Meta AI研究员，专注于机器学习和游戏AI',
-      expertise: ['人工智能', '机器学习', '算法优化', '系统架构'],
-      education: 'Stanford AI博士',
-      experience: 'Meta AI • DeepMind • 微软研究院',
+      role: '首席技术官 CTO',
+      avatar: '👩‍💻',
+      bio: '前以太坊核心开发者，智能合约安全专家，拥有丰富的DeFi项目经验',
+      experience: '8年区块链开发经验',
+      education: 'MIT计算机科学博士',
+      achievements: ['以太坊核心贡献者', '智能合约安全审计专家', '多个DeFi协议架构师'],
       social: {
         linkedin: 'https://linkedin.com/in/sarahkim',
         twitter: 'https://twitter.com/sarahkim',
         github: 'https://github.com/sarahkim'
-      },
-      achievements: [
-        '开发了业界领先的游戏AI算法',
-        '在顶级AI会议发表20+论文',
-        '获得AI领域青年科学家奖'
-      ]
+      }
     },
     {
       name: 'David Rodriguez',
       role: '首席产品官 CPO',
-      avatar: '/api/placeholder/150/150',
-      bio: '资深产品专家，前Riot Games产品总监，电竞行业资深从业者',
-      expertise: ['产品设计', '用户体验', '电竞运营', '社区建设'],
-      education: 'UC Berkeley商学院MBA',
-      experience: 'Riot Games • Blizzard • Epic Games',
+      avatar: '👨‍🎨',
+      bio: '前暴雪娱乐产品总监，负责《守望先锋》等知名游戏的产品设计',
+      experience: '12年游戏产品经验',
+      education: '斯坦福大学设计学硕士',
+      achievements: ['《守望先锋》产品负责人', '多项游戏设计专利', 'GDC最佳产品奖'],
       social: {
         linkedin: 'https://linkedin.com/in/davidrodriguez',
         twitter: 'https://twitter.com/davidrodriguez'
-      },
-      achievements: [
-        '主导《英雄联盟》全球赛事产品',
-        '构建了千万级用户社区',
-        '获得游戏行业产品创新奖'
-      ]
+      }
     },
     {
       name: 'Emily Zhang',
       role: '首席运营官 COO',
-      avatar: '/api/placeholder/150/150',
-      bio: '运营管理专家，前币安全球运营总监，具有丰富的加密货币行业经验',
-      expertise: ['运营管理', '商务拓展', '合规事务', '全球化'],
-      education: 'Wharton商学院MBA',
-      experience: 'Binance • Coinbase • McKinsey',
+      avatar: '👩‍💼',
+      bio: '前币安运营总监，拥有丰富的加密货币交易所和社区运营经验',
+      experience: '6年加密货币行业经验',
+      education: '北京大学MBA',
+      achievements: ['币安全球运营负责人', '社区建设专家', '多语言市场拓展'],
       social: {
         linkedin: 'https://linkedin.com/in/emilyzhang',
         twitter: 'https://twitter.com/emilyzhang'
-      },
-      achievements: [
-        '管理币安全球50+市场运营',
-        '建立了完善的合规体系',
-        '获得区块链行业杰出女性奖'
-      ]
+      }
     },
     {
-      name: 'Marcus Johnson',
-      role: '首席技术架构师',
-      avatar: '/api/placeholder/150/150',
-      bio: '区块链技术专家，前以太坊核心开发者，智能合约安全专家',
-      expertise: ['区块链开发', '智能合约', '安全审计', '跨链技术'],
-      education: 'CMU计算机科学博士',
-      experience: 'Ethereum Foundation • ConsenSys • IBM',
+      name: 'Michael Johnson',
+      role: '首席财务官 CFO',
+      avatar: '👨‍💻',
+      bio: '前高盛投资银行家，专注于科技和游戏行业的投资和财务管理',
+      experience: '15年金融行业经验',
+      education: '哈佛商学院MBA',
+      achievements: ['高盛TMT行业负责人', '多个IPO项目主导', '风险管理专家'],
       social: {
-        linkedin: 'https://linkedin.com/in/marcusjohnson',
-        twitter: 'https://twitter.com/marcusjohnson',
-        github: 'https://github.com/marcusjohnson'
-      },
-      achievements: [
-        '参与以太坊2.0核心开发',
-        '审计了价值10亿美元的智能合约',
-        '发现并修复多个重大安全漏洞'
-      ]
+        linkedin: 'https://linkedin.com/in/michaeljohnson',
+        twitter: 'https://twitter.com/michaeljohnson'
+      }
     },
     {
       name: 'Lisa Wang',
       role: '首席营销官 CMO',
-      avatar: '/api/placeholder/150/150',
-      bio: '数字营销专家，前字节跳动全球营销总监，Web3营销先驱',
-      expertise: ['数字营销', '品牌建设', '社区运营', '内容策略'],
-      education: 'Columbia商学院MBA',
-      experience: 'ByteDance • Facebook • Ogilvy',
+      avatar: '👩‍🎨',
+      bio: '前字节跳动全球营销总监，擅长品牌建设和数字营销策略',
+      experience: '9年数字营销经验',
+      education: '哥伦比亚大学营销学硕士',
+      achievements: ['TikTok全球营销负责人', '品牌建设专家', '数字营销创新奖'],
       social: {
         linkedin: 'https://linkedin.com/in/lisawang',
         twitter: 'https://twitter.com/lisawang'
-      },
-      achievements: [
-        '打造了多个千万级用户产品',
-        '获得数字营销金奖',
-        '建立了Web3营销最佳实践'
-      ]
+      }
     }
   ]
 
@@ -130,138 +105,169 @@ const TeamPage = () => {
     {
       name: 'Dr. Vitalik Buterin',
       role: '技术顾问',
-      company: 'Ethereum Foundation',
-      avatar: '/api/placeholder/150/150',
+      avatar: '👨‍🔬',
       bio: '以太坊创始人，区块链技术先驱',
-      expertise: ['区块链技术', '智能合约', '去中心化'],
-      contribution: '提供区块链技术战略指导'
+      company: 'Ethereum Foundation',
+      expertise: '区块链技术、智能合约、去中心化系统'
     },
     {
-      name: 'Marc Merrill',
+      name: 'Jane Chen',
       role: '游戏行业顾问',
-      company: 'Riot Games',
-      avatar: '/api/placeholder/150/150',
-      bio: 'Riot Games联合创始人，电竞产业先驱',
-      expertise: ['游戏开发', '电竞运营', '社区建设'],
-      contribution: '指导电竞生态系统建设'
+      avatar: '👩‍💼',
+      bio: '前EA Games副总裁，游戏行业资深专家',
+      company: 'EA Games',
+      expertise: '游戏开发、产品策略、市场拓展'
     },
     {
-      name: 'Cathie Wood',
+      name: 'Robert Kim',
       role: '投资顾问',
-      company: 'ARK Invest',
-      avatar: '/api/placeholder/150/150',
-      bio: 'ARK Invest创始人，颠覆性创新投资专家',
-      expertise: ['投资策略', '创新技术', '市场分析'],
-      contribution: '提供投资和战略发展建议'
+      avatar: '👨‍💼',
+      bio: 'Andreessen Horowitz合伙人，专注加密货币投资',
+      company: 'a16z',
+      expertise: '风险投资、加密货币、市场分析'
     },
     {
-      name: 'Dr. Fei-Fei Li',
-      role: 'AI顾问',
-      company: 'Stanford AI Lab',
-      avatar: '/api/placeholder/150/150',
-      bio: '斯坦福AI实验室主任，计算机视觉专家',
-      expertise: ['人工智能', '计算机视觉', '机器学习'],
-      contribution: '指导AI算法研发和优化'
+      name: 'Dr. Amy Liu',
+      role: '学术顾问',
+      avatar: '👩‍🎓',
+      bio: 'MIT计算机科学教授，AI和机器学习专家',
+      company: 'MIT',
+      expertise: '人工智能、机器学习、算法优化'
     }
   ]
 
-  const investors = [
-    {
-      name: 'Andreessen Horowitz',
-      type: '领投机构',
-      logo: '/api/placeholder/100/100',
-      investment: 'Series A - $20M',
-      focus: '加密货币和Web3投资',
-      portfolio: 'Coinbase, OpenSea, Dapper Labs'
-    },
-    {
-      name: 'Sequoia Capital',
-      type: '战略投资',
-      logo: '/api/placeholder/100/100',
-      investment: 'Series A - $15M',
-      focus: '科技创新投资',
-      portfolio: 'Google, Apple, Airbnb'
-    },
+  const partners = [
     {
       name: 'Binance Labs',
-      type: '生态投资',
-      logo: '/api/placeholder/100/100',
-      investment: 'Strategic - $10M',
-      focus: '区块链生态投资',
-      portfolio: 'Polygon, Sandbox, Axie Infinity'
+      type: '战略投资方',
+      logo: '🔶',
+      description: '全球领先的区块链生态系统和加密货币交易平台',
+      partnership: '战略投资、技术支持、市场推广'
     },
     {
-      name: 'Animoca Brands',
-      type: '游戏投资',
-      logo: '/api/placeholder/100/100',
-      investment: 'Strategic - $8M',
-      focus: 'GameFi和NFT投资',
-      portfolio: 'The Sandbox, Axie Infinity, OpenSea'
+      name: 'Polygon Studios',
+      type: '技术合作伙伴',
+      logo: '🟣',
+      description: 'Layer 2扩容解决方案提供商',
+      partnership: '技术集成、跨链支持、生态合作'
     },
     {
-      name: 'Paradigm',
-      type: '技术投资',
-      logo: '/api/placeholder/100/100',
-      investment: 'Series A - $12M',
-      focus: '加密货币基础设施',
-      portfolio: 'Uniswap, Compound, FTX'
+      name: 'Unity Technologies',
+      type: '技术合作伙伴',
+      logo: '⚫',
+      description: '全球领先的游戏引擎和开发平台',
+      partnership: '游戏引擎支持、开发工具、技术培训'
     },
     {
-      name: 'Pantera Capital',
-      type: '基金投资',
-      logo: '/api/placeholder/100/100',
-      investment: 'Venture - $5M',
-      focus: '区块链和数字资产',
-      portfolio: 'Bitstamp, Ripple, Circle'
+      name: 'Chainlink',
+      type: '基础设施合作伙伴',
+      logo: '🔗',
+      description: '去中心化预言机网络',
+      partnership: '数据预言机、价格馈送、随机数生成'
+    },
+    {
+      name: 'OpenSea',
+      type: '生态合作伙伴',
+      logo: '🌊',
+      description: '全球最大的NFT交易市场',
+      partnership: 'NFT交易、市场推广、用户导流'
+    },
+    {
+      name: 'Immutable X',
+      type: '技术合作伙伴',
+      logo: '❌',
+      description: '以太坊Layer 2 NFT解决方案',
+      partnership: 'NFT铸造、零Gas费交易、扩容支持'
     }
   ]
 
-  const teamStats = {
-    totalMembers: 45,
-    countries: 12,
-    avgExperience: 8,
-    totalFunding: '$70M'
+  const jobOpenings = [
+    {
+      title: '高级区块链开发工程师',
+      department: '技术部',
+      location: '远程/新加坡',
+      type: '全职',
+      requirements: ['5年以上区块链开发经验', '精通Solidity和Web3技术', '有DeFi项目经验优先'],
+      description: '负责智能合约开发、区块链架构设计和安全审计'
+    },
+    {
+      title: '游戏经济设计师',
+      department: '产品部',
+      location: '远程/上海',
+      type: '全职',
+      requirements: ['3年以上游戏经济设计经验', '熟悉代币经济学', '有GameFi项目经验'],
+      description: '设计游戏内经济系统、代币分配机制和激励模型'
+    },
+    {
+      title: '社区运营经理',
+      department: '运营部',
+      location: '远程',
+      type: '全职',
+      requirements: ['3年以上社区运营经验', '熟悉加密货币社区', '多语言能力优先'],
+      description: '负责全球社区建设、用户增长和品牌推广'
+    },
+    {
+      title: 'AI算法工程师',
+      department: '技术部',
+      location: '远程/北京',
+      type: '全职',
+      requirements: ['机器学习/深度学习背景', 'Python/TensorFlow经验', '有推荐系统经验优先'],
+      description: '开发智能匹配算法、反作弊系统和用户行为分析'
+    }
+  ]
+
+  if (!mounted) {
+    return <div className="min-h-screen bg-space-blue" />
   }
 
   return (
-    <div className="pt-16 min-h-screen">
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="py-20 particles-container">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gradient mb-6">
-            我们的团队
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-esports-purple/20 via-transparent to-neon-cyan/20" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            我们的 <span className="text-gradient">团队</span>
           </h1>
-          <p className="text-xl md:text-2xl text-light-gray mb-8 max-w-3xl mx-auto">
-            汇聚全球顶尖人才，共同构建GameFi的未来
+          <p className="text-xl md:text-2xl text-light-gray mb-8 max-w-4xl mx-auto">
+            汇聚全球顶尖人才，共同构建GameFi生态的未来
           </p>
-          
-          {/* Team Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <div className="card-esports text-center">
-              <div className="text-2xl font-bold text-esports-gold mb-2">{teamStats.totalMembers}</div>
-              <div className="text-sm text-light-gray">团队成员</div>
+        </div>
+      </section>
+
+      {/* Team Stats */}
+      <section className="py-16 bg-dark-gray/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-gradient mb-2">{teamStats.totalMembers}</div>
+              <div className="text-light-gray">团队成员</div>
             </div>
-            <div className="card-esports text-center">
-              <div className="text-2xl font-bold text-neon-cyan mb-2">{teamStats.countries}</div>
-              <div className="text-sm text-light-gray">覆盖国家</div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-esports-gold mb-2">{teamStats.countries}</div>
+              <div className="text-light-gray">覆盖国家</div>
             </div>
-            <div className="card-esports text-center">
-              <div className="text-2xl font-bold text-esports-purple mb-2">{teamStats.avgExperience}年</div>
-              <div className="text-sm text-light-gray">平均经验</div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-neon-cyan mb-2">{teamStats.experience}</div>
+              <div className="text-light-gray">平均经验</div>
             </div>
-            <div className="card-esports text-center">
-              <div className="text-2xl font-bold text-success-green mb-2">{teamStats.totalFunding}</div>
-              <div className="text-sm text-light-gray">总融资额</div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-success-green mb-2">{teamStats.projects}</div>
+              <div className="text-light-gray">成功项目</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Category Navigation */}
-      <section className="py-8 bg-dark-gray/30">
+      {/* Team Categories */}
+      <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => {
+            {[
+              { id: 'core', label: '核心团队', icon: Users },
+              { id: 'advisors', label: '顾问团队', icon: Award },
+              { id: 'partners', label: '合作伙伴', icon: Globe }
+            ].map((category) => {
               const Icon = category.icon
               return (
                 <button
@@ -269,8 +275,8 @@ const TeamPage = () => {
                   onClick={() => setActiveCategory(category.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-300 ${
                     activeCategory === category.id
-                      ? 'bg-gradient-purple-cyan text-white shadow-lg'
-                      : 'bg-dark-gray/50 text-light-gray hover:bg-esports-purple/20 hover:text-white'
+                      ? 'bg-esports-purple text-white shadow-lg shadow-esports-purple/30'
+                      : 'bg-dark-gray/50 text-light-gray hover:text-white hover:bg-dark-gray/70'
                   }`}
                 >
                   <Icon className="w-5 h-5" />
@@ -282,242 +288,235 @@ const TeamPage = () => {
         </div>
       </section>
 
-      {/* Team Content */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Core Team */}
-          {activeCategory === 'core' && (
-            <div className="space-y-12">
-              <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  核心团队
-                </h2>
-                <p className="text-xl text-light-gray max-w-3xl mx-auto">
-                  来自全球顶级科技公司的资深专家
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {coreTeam.map((member, index) => (
-                  <div key={index} className="card-esports group hover:scale-105 transition-transform duration-300">
-                    {/* Avatar */}
-                    <div className="w-24 h-24 bg-gradient-purple-cyan rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-white">
-                        {member.name.split(' ').map(n => n[0]).join('')}
-                      </span>
-                    </div>
-                    
-                    {/* Basic Info */}
-                    <div className="text-center mb-4">
-                      <h3 className="text-xl font-semibold text-white mb-1">{member.name}</h3>
-                      <p className="text-esports-gold font-medium mb-2">{member.role}</p>
-                      <p className="text-light-gray text-sm">{member.bio}</p>
-                    </div>
-                    
-                    {/* Education & Experience */}
-                    <div className="mb-4 space-y-2">
-                      <div className="text-xs">
-                        <span className="text-neon-cyan font-medium">教育背景: </span>
-                        <span className="text-light-gray">{member.education}</span>
-                      </div>
-                      <div className="text-xs">
-                        <span className="text-esports-purple font-medium">工作经历: </span>
-                        <span className="text-light-gray">{member.experience}</span>
-                      </div>
-                    </div>
-                    
-                    {/* Expertise */}
-                    <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-white mb-2">专业领域</h4>
-                      <div className="flex flex-wrap gap-1">
-                        {member.expertise.map((skill, idx) => (
-                          <span key={idx} className="text-xs bg-dark-gray/50 text-light-gray px-2 py-1 rounded">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Achievements */}
-                    <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-white mb-2">主要成就</h4>
-                      <div className="space-y-1">
-                        {member.achievements.slice(0, 2).map((achievement, idx) => (
-                          <div key={idx} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-neon-cyan rounded-full mt-1.5 flex-shrink-0" />
-                            <span className="text-xs text-light-gray">{achievement}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Social Links */}
-                    <div className="flex justify-center space-x-3">
-                      {member.social.linkedin && (
-                        <a href={member.social.linkedin} className="text-light-gray hover:text-neon-cyan transition-colors">
-                          <Linkedin className="w-4 h-4" />
-                        </a>
-                      )}
-                      {member.social.twitter && (
-                        <a href={member.social.twitter} className="text-light-gray hover:text-neon-cyan transition-colors">
-                          <Twitter className="w-4 h-4" />
-                        </a>
-                      )}
-                      {member.social.github && (
-                        <a href={member.social.github} className="text-light-gray hover:text-neon-cyan transition-colors">
-                          <Github className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+      {/* Core Team */}
+      {activeCategory === 'core' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                核心团队
+              </h2>
+              <p className="text-xl text-light-gray">
+                来自全球顶尖科技公司的资深专家
+              </p>
             </div>
-          )}
-
-          {/* Advisors */}
-          {activeCategory === 'advisors' && (
-            <div className="space-y-12">
-              <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  顾问团队
-                </h2>
-                <p className="text-xl text-light-gray max-w-3xl mx-auto">
-                  行业领袖和技术专家为我们提供战略指导
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {advisors.map((advisor, index) => (
-                  <div key={index} className="card-esports">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-16 h-16 bg-gradient-gold-purple rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-lg font-bold text-white">
-                          {advisor.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                      
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-white mb-1">{advisor.name}</h3>
-                        <p className="text-esports-gold text-sm font-medium mb-1">{advisor.role}</p>
-                        <p className="text-neon-cyan text-sm mb-2">{advisor.company}</p>
-                        <p className="text-light-gray text-sm mb-3">{advisor.bio}</p>
-                        
-                        <div className="mb-3">
-                          <h4 className="text-xs font-semibold text-white mb-1">专业领域</h4>
-                          <div className="flex flex-wrap gap-1">
-                            {advisor.expertise.map((skill, idx) => (
-                              <span key={idx} className="text-xs bg-dark-gray/50 text-light-gray px-2 py-1 rounded">
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {coreTeam.map((member, index) => (
+                <div key={index} className="card-esports group hover:scale-105 transition-transform duration-300">
+                  <div className="text-center mb-6">
+                    <div className="text-6xl mb-4">{member.avatar}</div>
+                    <h3 className="text-xl font-semibold text-white mb-1">{member.name}</h3>
+                    <p className="text-esports-gold font-medium">{member.role}</p>
+                  </div>
+                  
+                  <p className="text-light-gray text-sm mb-4 leading-relaxed">
+                    {member.bio}
+                  </p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center text-sm">
+                      <Calendar className="w-4 h-4 mr-2 text-neon-cyan" />
+                      <span className="text-light-gray">{member.experience}</span>
+                    </div>
+                    <div className="flex items-center text-sm">
+                      <Award className="w-4 h-4 mr-2 text-esports-gold" />
+                      <span className="text-light-gray">{member.education}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-white mb-2">主要成就</h4>
+                    <div className="space-y-1">
+                      {member.achievements.map((achievement, idx) => (
+                        <div key={idx} className="flex items-start text-xs">
+                          <div className="w-1.5 h-1.5 rounded-full bg-success-green mr-2 mt-1.5 flex-shrink-0" />
+                          <span className="text-light-gray">{achievement}</span>
                         </div>
-                        
-                        <div className="text-xs">
-                          <span className="text-esports-purple font-medium">贡献: </span>
-                          <span className="text-light-gray">{advisor.contribution}</span>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Investors */}
-          {activeCategory === 'investors' && (
-            <div className="space-y-12">
-              <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  投资机构
-                </h2>
-                <p className="text-xl text-light-gray max-w-3xl mx-auto">
-                  获得全球顶级投资机构的认可和支持
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {investors.map((investor, index) => (
-                  <div key={index} className="card-esports text-center">
-                    <div className="w-16 h-16 bg-gradient-purple-cyan rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <Briefcase className="w-8 h-8 text-white" />
-                    </div>
-                    
-                    <h3 className="text-lg font-semibold text-white mb-2">{investor.name}</h3>
-                    <p className="text-esports-gold text-sm font-medium mb-2">{investor.type}</p>
-                    <p className="text-neon-cyan font-bold mb-3">{investor.investment}</p>
-                    
-                    <div className="text-left space-y-2">
-                      <div className="text-xs">
-                        <span className="text-light-gray font-medium">投资领域: </span>
-                        <span className="text-light-gray">{investor.focus}</span>
-                      </div>
-                      <div className="text-xs">
-                        <span className="text-light-gray font-medium">知名投资: </span>
-                        <span className="text-light-gray">{investor.portfolio}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Investment Summary */}
-              <div className="card-esports">
-                <h3 className="text-xl font-semibold text-white text-center mb-6">融资概况</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-success-green mb-2">$70M</div>
-                    <div className="text-sm text-light-gray">总融资金额</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-cyan mb-2">6</div>
-                    <div className="text-sm text-light-gray">投资机构数量</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-esports-gold mb-2">Series A</div>
-                    <div className="text-sm text-light-gray">当前轮次</div>
+                  
+                  <div className="flex justify-center space-x-4">
+                    {member.social.linkedin && (
+                      <a href={member.social.linkedin} className="text-light-gray hover:text-neon-cyan transition-colors">
+                        <Linkedin className="w-5 h-5" />
+                      </a>
+                    )}
+                    {member.social.twitter && (
+                      <a href={member.social.twitter} className="text-light-gray hover:text-neon-cyan transition-colors">
+                        <Twitter className="w-5 h-5" />
+                      </a>
+                    )}
+                    {member.social.github && (
+                      <a href={member.social.github} className="text-light-gray hover:text-neon-cyan transition-colors">
+                        <Github className="w-5 h-5" />
+                      </a>
+                    )}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          )}
+          </div>
+        </section>
+      )}
+
+      {/* Advisors */}
+      {activeCategory === 'advisors' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                顾问团队
+              </h2>
+              <p className="text-xl text-light-gray">
+                行业领袖为项目发展提供战略指导
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {advisors.map((advisor, index) => (
+                <div key={index} className="card-esports">
+                  <div className="flex items-start space-x-4">
+                    <div className="text-4xl">{advisor.avatar}</div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-white mb-1">{advisor.name}</h3>
+                      <p className="text-esports-gold font-medium mb-2">{advisor.role}</p>
+                      <p className="text-neon-cyan text-sm mb-3">{advisor.company}</p>
+                      <p className="text-light-gray text-sm mb-4">{advisor.bio}</p>
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2">专业领域</h4>
+                        <p className="text-xs text-light-gray">{advisor.expertise}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Partners */}
+      {activeCategory === 'partners' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                合作伙伴
+              </h2>
+              <p className="text-xl text-light-gray">
+                与行业领先企业建立战略合作关系
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {partners.map((partner, index) => (
+                <div key={index} className="card-esports group hover:scale-105 transition-transform duration-300">
+                  <div className="text-center mb-4">
+                    <div className="text-4xl mb-3">{partner.logo}</div>
+                    <h3 className="text-lg font-semibold text-white mb-1">{partner.name}</h3>
+                    <p className="text-esports-gold text-sm">{partner.type}</p>
+                  </div>
+                  
+                  <p className="text-light-gray text-sm mb-4 text-center">
+                    {partner.description}
+                  </p>
+                  
+                  <div className="bg-dark-gray/30 rounded-lg p-3">
+                    <h4 className="text-sm font-semibold text-white mb-2">合作内容</h4>
+                    <p className="text-xs text-light-gray">{partner.partnership}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Join Our Team */}
+      <section className="py-20 bg-dark-gray/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              加入我们
+            </h2>
+            <p className="text-xl text-light-gray">
+              寻找志同道合的伙伴，一起构建GameFi的未来
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {jobOpenings.map((job, index) => (
+              <div key={index} className="card-esports">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-1">{job.title}</h3>
+                    <div className="flex items-center space-x-4 text-sm text-light-gray">
+                      <span>{job.department}</span>
+                      <span>•</span>
+                      <span className="flex items-center">
+                        <MapPin className="w-3 h-3 mr-1" />
+                        {job.location}
+                      </span>
+                      <span>•</span>
+                      <span>{job.type}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <p className="text-light-gray text-sm mb-4">{job.description}</p>
+                
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-white mb-2">任职要求</h4>
+                  <div className="space-y-1">
+                    {job.requirements.map((req, idx) => (
+                      <div key={idx} className="flex items-start text-xs">
+                        <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan mr-2 mt-1.5 flex-shrink-0" />
+                        <span className="text-light-gray">{req}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <button className="w-full btn-neon">
+                  <Mail className="w-4 h-4 mr-2" />
+                  申请职位
+                </button>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-light-gray mb-4">
+              没有找到合适的职位？我们随时欢迎优秀的人才加入！
+            </p>
+            <button className="px-6 py-3 border border-light-gray/30 rounded-lg hover:border-neon-cyan transition-colors duration-300">
+              发送简历
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* Join Us */}
-      <section className="py-16 bg-dark-gray/30">
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-esports-purple/20 to-neon-cyan/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            加入我们的团队
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            与我们一起创造未来
           </h2>
           <p className="text-xl text-light-gray mb-8">
-            我们正在寻找充满激情的人才，一起构建GameFi的未来
+            加入METATOPIA团队，成为GameFi革命的推动者
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="card-esports text-center">
-              <Code className="w-8 h-8 text-neon-cyan mx-auto mb-3" />
-              <h3 className="font-semibold text-white mb-2">技术开发</h3>
-              <p className="text-light-gray text-sm">区块链、AI、前后端开发</p>
-            </div>
-            <div className="card-esports text-center">
-              <Brain className="w-8 h-8 text-esports-purple mx-auto mb-3" />
-              <h3 className="font-semibold text-white mb-2">产品设计</h3>
-              <p className="text-light-gray text-sm">产品经理、UI/UX设计师</p>
-            </div>
-            <div className="card-esports text-center">
-              <Globe className="w-8 h-8 text-esports-gold mx-auto mb-3" />
-              <h3 className="font-semibold text-white mb-2">运营市场</h3>
-              <p className="text-light-gray text-sm">市场营销、社区运营</p>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="btn-neon">
+              <Users className="w-5 h-5 mr-2" />
+              查看职位
+            </button>
+            <button className="px-6 py-3 border border-light-gray/30 rounded-lg hover:border-neon-cyan transition-colors duration-300">
+              了解文化
+            </button>
           </div>
-          
-          <button className="btn-neon-glow">
-            <Mail className="w-5 h-5 mr-2" />
-            查看职位空缺
-          </button>
         </div>
       </section>
     </div>
