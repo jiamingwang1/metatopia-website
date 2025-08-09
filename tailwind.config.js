@@ -8,26 +8,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // GameFi电竞主题色彩
-        'space-blue': '#0a0e27',
-        'esports-purple': '#6366f1',
-        'neon-cyan': '#06b6d4',
-        'esports-gold': '#fbbf24',
-        'success-green': '#10b981',
-        'warning-orange': '#f59e0b',
-        'dark-gray': '#1f2937',
-        'mid-gray': '#374151',
+        'space-blue': '#0a0e1a',
+        'dark-gray': '#1a1d29',
         'light-gray': '#9ca3af',
+        'esports-purple': '#8b5cf6',
+        'esports-gold': '#fbbf24',
+        'neon-cyan': '#06b6d4',
+        'success-green': '#10b981',
       },
       backgroundImage: {
         'gradient-purple-cyan': 'linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%)',
-        'gradient-gold-purple': 'linear-gradient(135deg, #f59e0b 0%, #8b5cf6 100%)',
-        'tech-grid': 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)',
+        'gradient-gold-purple': 'linear-gradient(135deg, #fbbf24 0%, #8b5cf6 100%)',
+        'tech-grid': "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5cf6' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
       },
       animation: {
-        'pulse-glow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
+        'spin-slow': 'spin 3s linear infinite',
+        'pulse-slow': 'pulse 3s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -35,8 +33,8 @@ module.exports = {
           '50%': { transform: 'translateY(-20px)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 5px #06b6d4, 0 0 10px #06b6d4, 0 0 15px #06b6d4' },
-          '100%': { boxShadow: '0 0 10px #06b6d4, 0 0 20px #06b6d4, 0 0 30px #06b6d4' },
+          '0%': { boxShadow: '0 0 5px #8b5cf6, 0 0 10px #8b5cf6, 0 0 15px #8b5cf6' },
+          '100%': { boxShadow: '0 0 10px #8b5cf6, 0 0 20px #8b5cf6, 0 0 30px #8b5cf6' },
         },
       },
     },

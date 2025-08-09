@@ -4,8 +4,8 @@ const nextConfig = {
     domains: ['localhost'],
   },
   i18n: {
-    locales: ['zh', 'en'],
-    defaultLocale: 'zh',
+    locales: ['zh-CN', 'en'],
+    defaultLocale: 'zh-CN',
   },
 }
 
