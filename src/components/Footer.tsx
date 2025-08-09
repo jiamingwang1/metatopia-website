@@ -62,7 +62,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 rounded-lg overflow-hidden">
-              <img src="/logo.jpg" alt="METATOPIA Logo" className="w-full h-full object-cover" />
+              <img src="/logo.svg" alt="METATOPIA Logo" className="w-full h-full object-cover" />
             </div>
               <div>
                 <span className="text-xl font-bold text-gradient">METATOPIA</span>
