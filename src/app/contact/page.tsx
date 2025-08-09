@@ -15,7 +15,7 @@ const ContactPage = () => {
     newsletter: false
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState(null)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -87,6 +87,13 @@ const ContactPage = () => {
       handle: 'MetaTopia',
       url: 'https://linkedin.com/company/metatopia',
       color: 'hover:text-blue-600'
+    },
+    {
+      icon: Globe,
+      name: 'Medium',
+      handle: '@MetaTopia',
+      url: 'https://medium.com/@MetaTopia',
+      color: 'hover:text-green-400'
     }
   ]
 
@@ -99,19 +106,22 @@ const ContactPage = () => {
     { value: 'partnership', label: '合作伙伴' }
   ]
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const target = e.target as HTMLInputElement
+    const { name, value, type } = target
+    const checked = target.checked
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus(null)
 
+    // 模拟表单提交
     try {
       // 模拟API调用
       await new Promise(resolve => setTimeout(resolve, 2000))
