@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-space-blue text-white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  /* 中文字体 */
+  .font-chinese {
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  }
+}
+
+@layer components {
+  /* 霓虹发光按钮 */
+  .btn-neon {
+    @apply px-6 py-3 bg-gradient-purple-cyan text-white font-semibold rounded-lg;
+    @apply hover:shadow-lg hover:shadow-neon-cyan/50 transition-all duration-300;
+    @apply border border-neon-cyan/30 hover:border-neon-cyan;
+  }
+  
+  /* 电竞风格卡片 */
+  .card-esports {
+    @apply bg-dark-gray/80 backdrop-blur-sm border border-esports-purple/30;
+    @apply rounded-xl p-6 hover:border-esports-purple/60 transition-all duration-300;
+    @apply hover:shadow-lg hover:shadow-esports-purple/20;
+  }
+  
+  /* 科技网格背景 */
+  .tech-grid-bg {
+    background-image: 
+      linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* 粒子动画容器 */
+  .particles-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .particles-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  /* 文本渐变 */
+  .text-gradient {
+    @apply bg-gradient-purple-cyan bg-clip-text text-transparent;
+  }
+  
+  /* 霓虹文字效果 */
+  .text-neon {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+  
+  /* 滚动条样式 */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #6366f1 #1f2937;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+  }
+}
