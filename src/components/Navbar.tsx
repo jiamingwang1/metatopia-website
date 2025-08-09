@@ -31,7 +31,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-10 h-10 rounded-lg overflow-hidden">
-              <img src="/logo.jpg" alt="METATOPIA Logo" className="w-full h-full object-cover" />
+              <img src="/logo.svg" alt="METATOPIA Logo" className="w-full h-full object-cover" />
             </div>
             <div className="hidden sm:block">
               <span className="text-xl font-bold text-gradient">METATOPIA</span>
