@@ -1,123 +1,207 @@
 'use client'
 
-import { useState } from 'react'
-import { Brain, Trophy, Gamepad2, Shield, Users, Zap, Globe, Coins } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Play, Trophy, Zap, Users, Star, Coins, Shield, Globe, ArrowRight, TrendingUp } from 'lucide-react'
 
 const GameFiPage = () => {
-  const [activeTab, setActiveTab] = useState('ai')
+  const [mounted, setMounted] = useState(false)
+  const [activeTab, setActiveTab] = useState('ai-system')
 
-  const tabs = [
-    { id: 'ai', label: 'AI智能系统', icon: Brain },
-    { id: 'esports', label: '电竞赛事', icon: Trophy },
-    { id: 'nft', label: 'NFT资产', icon: Gamepad2 },
-    { id: 'crosschain', label: '跨链生态', icon: Globe }
-  ]
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const aiFeatures = [
     {
-      title: '智能赛事匹配',
-      description: '基于玩家技能等级、游戏偏好和历史表现的AI匹配算法',
-      features: ['技能等级评估', '游戏风格分析', '延迟优化匹配', '公平性保障'],
-      icon: Zap
+      icon: Zap,
+      title: '智能匹配算法',
+      description: '基于深度学习的玩家匹配系统，分析技能水平、游戏风格、历史表现等多维度数据，为每位玩家匹配最合适的对手。',
+      benefits: ['匹配准确率95%+', '游戏体验提升40%', '公平竞技保障', '实时算法优化']
     },
     {
-      title: '玩家行为分析',
-      description: '深度学习算法分析玩家行为模式，提供个性化游戏体验',
-      features: ['游戏习惯分析', '偏好推荐', '进步轨迹追踪', '个性化奖励'],
-      icon: Brain
+      icon: Shield,
+      title: '反作弊检测',
+      description: '利用AI行为分析技术，实时监控玩家操作模式，识别异常行为和作弊行为，确保竞技环境的公平性。',
+      benefits: ['99.9%检测准确率', '毫秒级响应', '自动处罚机制', '持续学习优化']
     },
     {
-      title: '链上反作弊',
-      description: '区块链技术结合AI算法，构建透明可信的反作弊系统',
-      features: ['行为异常检测', '数据完整性验证', '实时监控', '社区举报机制'],
-      icon: Shield
+      icon: TrendingUp,
+      title: '技能评估系统',
+      description: '多维度技能评估模型，准确评估玩家的游戏技能水平，为匹配和排名提供科学依据。',
+      benefits: ['多维度评估', '动态调整', '技能成长追踪', '个性化建议']
+    },
+    {
+      icon: Users,
+      title: '团队组合推荐',
+      description: 'AI分析玩家特长和配合风格，智能推荐最佳团队组合，提升团队协作效果。',
+      benefits: ['配合度分析', '角色匹配', '战术推荐', '团队优化']
     }
   ]
 
-  const esportsData = {
-    leagues: [
-      { name: 'MetaTopia全球锦标赛', prize: '100万 MTP', participants: '10,000+' },
-      { name: '季度精英联赛', prize: '50万 MTP', participants: '5,000+' },
-      { name: '每月社区赛', prize: '10万 MTP', participants: '2,000+' },
-      { name: '每周快速赛', prize: '2万 MTP', participants: '1,000+' }
-    ],
-    teams: [
-      { name: 'Cyber Dragons', members: 5, wins: 28, rank: 1 },
-      { name: 'Neon Warriors', members: 5, wins: 25, rank: 2 },
-      { name: 'Quantum Guardians', members: 5, wins: 22, rank: 3 },
-      { name: 'Digital Phoenixes', members: 5, wins: 20, rank: 4 }
-    ]
+  const esportsSystem = [
+    {
+      level: '日常匹配',
+      description: '随时随地的快速匹配，享受公平竞技',
+      rewards: '经验值、代币奖励',
+      participants: '所有玩家',
+      frequency: '24/7'
+    },
+    {
+      level: '周赛锦标',
+      description: '每周举办的主题赛事，不同难度等级',
+      rewards: 'NFT奖励、排名积分',
+      participants: '注册玩家',
+      frequency: '每周'
+    },
+    {
+      level: '月度联赛',
+      description: '高水平的月度竞技联赛，顶尖玩家对决',
+      rewards: '丰厚奖金、专属NFT',
+      participants: '排名前1000',
+      frequency: '每月'
+    },
+    {
+      level: '季度杯赛',
+      description: '跨游戏的综合性赛事，全能选手的舞台',
+      rewards: '巨额奖金、荣誉称号',
+      participants: '邀请制',
+      frequency: '每季度'
+    },
+    {
+      level: '年度总决赛',
+      description: 'METATOPIA最高级别赛事，全球瞩目',
+      rewards: '百万奖金、传奇地位',
+      participants: '全球前100',
+      frequency: '每年'
+    }
+  ]
+
+  const nftAssets = [
+    {
+      type: '角色NFT',
+      icon: '🎮',
+      description: '独特的游戏角色，拥有专属外观、技能和成长属性',
+      features: ['独特外观设计', '专属技能树', '成长记录链上存储', '跨游戏使用'],
+      rarity: ['普通', '稀有', '史诗', '传说', '神话'],
+      utility: '游戏内使用、展示收藏、交易流通'
+    },
+    {
+      type: '装备NFT',
+      icon: '⚔️',
+      description: '各种游戏装备和道具，提升角色能力和战斗力',
+      features: ['属性加成', '视觉效果', '升级强化', '套装组合'],
+      rarity: ['白色', '绿色', '蓝色', '紫色', '橙色', '红色'],
+      utility: '装备使用、属性提升、合成升级'
+    },
+    {
+      type: '土地NFT',
+      icon: '🏰',
+      description: '虚拟世界中的土地资产，可建设和经营',
+      features: ['建筑权限', '资源产出', '社交空间', '投资价值'],
+      rarity: ['郊区', '城镇', '城市', '核心区', '特殊地段'],
+      utility: '建设经营、资源收益、社交活动'
+    },
+    {
+      type: '收藏品NFT',
+      icon: '💎',
+      description: '限量发行的纪念品和艺术品，具有收藏价值',
+      features: ['限量发行', '艺术价值', '历史意义', '社区地位'],
+      rarity: ['限量1000', '限量500', '限量100', '限量10', '唯一'],
+      utility: '收藏展示、身份象征、投资增值'
+    }
+  ]
+
+  const crossChainEcosystem = [
+    {
+      chain: 'Ethereum',
+      logo: '🔷',
+      features: ['主要NFT交易', '核心智能合约', 'DeFi集成'],
+      advantages: '安全性高、生态成熟、流动性好'
+    },
+    {
+      chain: 'BSC',
+      logo: '🟡',
+      features: ['快速交易', '低手续费', '游戏优化'],
+      advantages: '交易成本低、速度快、游戏友好'
+    },
+    {
+      chain: 'Polygon',
+      logo: '🟣',
+      features: ['Layer2扩容', '高性能', '环保节能'],
+      advantages: '扩展性强、环保、开发友好'
+    },
+    {
+      chain: 'Arbitrum',
+      logo: '🔵',
+      features: ['以太坊兼容', '低费用', '高吞吐'],
+      advantages: '兼容性好、成本低、性能优'
+    }
+  ]
+
+  const ecosystemGames = [
+    {
+      name: 'MetaBattle Arena',
+      genre: 'MOBA竞技',
+      status: '已上线',
+      players: '50,000+',
+      description: '5v5团队竞技游戏，融合传统MOBA与区块链经济',
+      features: ['AI智能匹配', 'NFT英雄', '代币奖励', '赛事体系']
+    },
+    {
+      name: 'Crypto Racing',
+      genre: '竞速游戏',
+      status: '测试中',
+      players: '20,000+',
+      description: '高速竞技赛车游戏，拥有和交易独特的赛车NFT',
+      features: ['赛车NFT', '改装系统', '锦标赛', '车队模式']
+    },
+    {
+      name: 'Strategy Empire',
+      genre: '策略游戏',
+      status: '开发中',
+      players: '预注册中',
+      description: '大型多人在线策略游戏，建设帝国征服世界',
+      features: ['土地NFT', '资源管理', '联盟战争', 'DAO治理']
+    },
+    {
+      name: 'Card Masters',
+      genre: '卡牌游戏',
+      status: '即将上线',
+      players: '预注册中',
+      description: '策略卡牌对战游戏，收集和交易稀有卡牌',
+      features: ['卡牌NFT', '策略对战', '卡包开启', '锦标赛']
+    }
+  ]
+
+  if (!mounted) {
+    return <div className="min-h-screen bg-space-blue" />
   }
 
-  const nftCategories = [
-    {
-      title: '角色与装备NFT',
-      description: '独特的游戏角色和装备，具有不同的属性和稀有度',
-      items: ['传奇角色', '史诗装备', '稀有武器', '特殊技能'],
-      rarity: ['普通', '稀有', '史诗', '传奇', '神话']
-    },
-    {
-      title: '皮肤与时装NFT',
-      description: '个性化的角色外观和时装，展现玩家独特风格',
-      items: ['限定皮肤', '节日时装', '联名款式', '定制外观'],
-      rarity: ['基础', '高级', '豪华', '至尊', '收藏']
-    },
-    {
-      title: '赛道与土地NFT',
-      description: '虚拟世界中的土地和赛道，可用于建设和举办赛事',
-      items: ['竞技场', '训练场', '商业区', '住宅区'],
-      rarity: ['标准', '优质', '豪华', '顶级', '独一无二']
-    }
-  ]
-
-  const crosschainSupport = [
-    { name: 'Ethereum', status: '已支持', color: 'text-blue-400' },
-    { name: 'Polygon', status: '已支持', color: 'text-purple-400' },
-    { name: 'BNB Chain', status: '已支持', color: 'text-yellow-400' },
-    { name: 'Arbitrum', status: '开发中', color: 'text-orange-400' },
-    { name: 'Optimism', status: '计划中', color: 'text-red-400' },
-    { name: 'Solana', status: '计划中', color: 'text-green-400' }
-  ]
-
   return (
-    <div className="pt-16 min-h-screen">
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="py-20 particles-container">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gradient mb-6">
-            GameFi生态系统
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-esports-purple/20 via-transparent to-neon-cyan/20" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <span className="text-gradient">GameFi</span> 生态系统
           </h1>
-          <p className="text-xl md:text-2xl text-light-gray mb-8 max-w-3xl mx-auto">
-            AI驱动的智能游戏生态，融合电竞、NFT与DeFi的创新平台
+          <p className="text-xl md:text-2xl text-light-gray mb-8 max-w-4xl mx-auto">
+            AI驱动的智能游戏生态，融合电竞、NFT与DeFi，创造全新的游戏经济模式
           </p>
-          
-          {/* Key Metrics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <div className="card-esports text-center">
-              <div className="text-2xl font-bold text-esports-gold mb-2">50+</div>
-              <div className="text-sm text-light-gray">集成游戏</div>
-            </div>
-            <div className="card-esports text-center">
-              <div className="text-2xl font-bold text-neon-cyan mb-2">100万+</div>
-              <div className="text-sm text-light-gray">注册玩家</div>
-            </div>
-            <div className="card-esports text-center">
-              <div className="text-2xl font-bold text-esports-purple mb-2">365天</div>
-              <div className="text-sm text-light-gray">全年赛事</div>
-            </div>
-            <div className="card-esports text-center">
-              <div className="text-2xl font-bold text-success-green mb-2">1000万+</div>
-              <div className="text-sm text-light-gray">NFT交易量</div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Tab Navigation */}
+      {/* Navigation Tabs */}
       <section className="py-8 bg-dark-gray/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
-            {tabs.map((tab) => {
+            {[
+              { id: 'ai-system', label: 'AI智能系统', icon: Zap },
+              { id: 'esports', label: '电竞赛事', icon: Trophy },
+              { id: 'nft-assets', label: 'NFT资产', icon: Star },
+              { id: 'cross-chain', label: '跨链生态', icon: Globe }
+            ].map((tab) => {
               const Icon = tab.icon
               return (
                 <button
@@ -125,8 +209,8 @@ const GameFiPage = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-300 ${
                     activeTab === tab.id
-                      ? 'bg-gradient-purple-cyan text-white shadow-lg'
-                      : 'bg-dark-gray/50 text-light-gray hover:bg-esports-purple/20 hover:text-white'
+                      ? 'bg-esports-purple text-white shadow-lg shadow-esports-purple/30'
+                      : 'bg-dark-gray/50 text-light-gray hover:text-white hover:bg-dark-gray/70'
                   }`}
                 >
                   <Icon className="w-5 h-5" />
@@ -138,287 +222,301 @@ const GameFiPage = () => {
         </div>
       </section>
 
-      {/* Tab Content */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* AI智能系统 */}
-          {activeTab === 'ai' && (
-            <div className="space-y-12">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  AI智能系统
-                </h2>
-                <p className="text-xl text-light-gray max-w-3xl mx-auto">
-                  先进的人工智能技术为GameFi生态提供智能化服务
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {aiFeatures.map((feature, index) => {
-                  const Icon = feature.icon
-                  return (
-                    <div key={index} className="card-esports group hover:scale-105 transition-transform duration-300">
-                      <div className="w-12 h-12 bg-gradient-purple-cyan rounded-lg flex items-center justify-center mb-4 group-hover:animate-pulse">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-white mb-3">
-                        {feature.title}
-                      </h3>
-                      <p className="text-light-gray mb-4">
-                        {feature.description}
-                      </p>
-                      <ul className="space-y-2">
-                        {feature.features.map((item, idx) => (
-                          <li key={idx} className="flex items-center space-x-2 text-sm">
-                            <div className="w-2 h-2 bg-neon-cyan rounded-full" />
-                            <span className="text-light-gray">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+      {/* AI System Tab */}
+      {activeTab === 'ai-system' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                AI智能系统
+              </h2>
+              <p className="text-xl text-light-gray max-w-3xl mx-auto">
+                先进的人工智能技术，为游戏体验提供智能化支持
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {aiFeatures.map((feature, index) => {
+                const Icon = feature.icon
+                return (
+                  <div key={index} className="card-esports group hover:scale-105 transition-transform duration-300">
+                    <div className="w-16 h-16 rounded-xl bg-gradient-purple-cyan flex items-center justify-center mb-6 group-hover:animate-pulse">
+                      <Icon className="w-8 h-8 text-white" />
                     </div>
-                  )
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* 电竞赛事 */}
-          {activeTab === 'esports' && (
-            <div className="space-y-12">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  电竞赛事体系
-                </h2>
-                <p className="text-xl text-light-gray max-w-3xl mx-auto">
-                  全球化的电竞赛事平台，为玩家提供公平竞技的舞台
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* 赛事列表 */}
-                <div>
-                  <h3 className="text-2xl font-semibold text-white mb-6 flex items-center">
-                    <Trophy className="w-6 h-6 mr-2 text-esports-gold" />
-                    官方赛事
-                  </h3>
-                  <div className="space-y-4">
-                    {esportsData.leagues.map((league, index) => (
-                      <div key={index} className="card-esports">
-                        <div className="flex justify-between items-start mb-2">
-                          <h4 className="font-semibold text-white">{league.name}</h4>
-                          <span className="text-esports-gold font-bold">{league.prize}</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-light-gray">
-                          <span>参赛人数: {league.participants}</span>
-                          <span className="text-neon-cyan">报名中</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* 战队排行 */}
-                <div>
-                  <h3 className="text-2xl font-semibold text-white mb-6 flex items-center">
-                    <Users className="w-6 h-6 mr-2 text-esports-purple" />
-                    顶级战队
-                  </h3>
-                  <div className="space-y-4">
-                    {esportsData.teams.map((team, index) => (
-                      <div key={index} className="card-esports">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
-                              team.rank === 1 ? 'bg-esports-gold text-black' :
-                              team.rank === 2 ? 'bg-gray-400 text-black' :
-                              team.rank === 3 ? 'bg-orange-600 text-white' :
-                              'bg-dark-gray text-white'
-                            }`}>
-                              {team.rank}
-                            </div>
-                            <div>
-                              <div className="font-semibold text-white">{team.name}</div>
-                              <div className="text-sm text-light-gray">{team.members} 成员</div>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-neon-cyan font-bold">{team.wins}</div>
-                            <div className="text-xs text-light-gray">胜场</div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* NFT资产 */}
-          {activeTab === 'nft' && (
-            <div className="space-y-12">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  NFT资产系统
-                </h2>
-                <p className="text-xl text-light-gray max-w-3xl mx-auto">
-                  丰富多样的NFT资产，构建完整的虚拟经济生态
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {nftCategories.map((category, index) => (
-                  <div key={index} className="card-esports">
+                    
                     <h3 className="text-xl font-semibold text-white mb-4">
-                      {category.title}
+                      {feature.title}
                     </h3>
-                    <p className="text-light-gray mb-6">
-                      {category.description}
+                    
+                    <p className="text-light-gray mb-6 leading-relaxed">
+                      {feature.description}
                     </p>
                     
-                    <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-esports-gold mb-3">资产类型</h4>
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold text-esports-gold mb-3">核心优势</h4>
+                      {feature.benefits.map((benefit, idx) => (
+                        <div key={idx} className="flex items-center text-sm">
+                          <div className="w-2 h-2 rounded-full bg-neon-cyan mr-3" />
+                          <span className="text-light-gray">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Esports Tab */}
+      {activeTab === 'esports' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                电竞赛事体系
+              </h2>
+              <p className="text-xl text-light-gray max-w-3xl mx-auto">
+                多层级赛事体系，为不同水平的玩家提供展示舞台
+              </p>
+            </div>
+            
+            <div className="space-y-6">
+              {esportsSystem.map((level, index) => (
+                <div key={index} className="card-esports">
+                  <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
+                    <div className="md:col-span-2">
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        {level.level}
+                      </h3>
+                      <p className="text-light-gray">
+                        {level.description}
+                      </p>
+                    </div>
+                    
+                    <div className="text-center">
+                      <div className="text-sm text-light-gray mb-1">奖励机制</div>
+                      <div className="text-esports-gold font-semibold">{level.rewards}</div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <div className="text-sm text-light-gray mb-1">参与条件</div>
+                      <div className="text-neon-cyan font-semibold">{level.participants}</div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <div className="text-sm text-light-gray mb-1">举办频率</div>
+                      <div className="text-esports-purple font-semibold">{level.frequency}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-16 text-center">
+              <div className="card-esports inline-block">
+                <h3 className="text-xl font-semibold text-white mb-4">总奖金池</h3>
+                <div className="text-4xl font-bold text-gradient mb-2">$10,000,000</div>
+                <div className="text-light-gray">年度总奖金池，持续增长中</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* NFT Assets Tab */}
+      {activeTab === 'nft-assets' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                NFT资产系统
+              </h2>
+              <p className="text-xl text-light-gray max-w-3xl mx-auto">
+                多样化的NFT资产类型，真正的数字资产所有权
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {nftAssets.map((asset, index) => (
+                <div key={index} className="card-esports">
+                  <div className="flex items-center mb-6">
+                    <div className="text-4xl mr-4">{asset.icon}</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">{asset.type}</h3>
+                      <p className="text-light-gray text-sm">{asset.description}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-sm font-semibold text-esports-gold mb-2">核心特性</h4>
                       <div className="grid grid-cols-2 gap-2">
-                        {category.items.map((item, idx) => (
-                          <div key={idx} className="bg-dark-gray/50 p-2 rounded text-sm text-center text-light-gray">
-                            {item}
+                        {asset.features.map((feature, idx) => (
+                          <div key={idx} className="text-xs text-light-gray bg-dark-gray/30 rounded px-2 py-1">
+                            {feature}
                           </div>
                         ))}
                       </div>
                     </div>
                     
                     <div>
-                      <h4 className="text-sm font-semibold text-neon-cyan mb-3">稀有度等级</h4>
-                      <div className="space-y-1">
-                        {category.rarity.map((level, idx) => (
-                          <div key={idx} className="flex justify-between items-center text-sm">
-                            <span className="text-light-gray">{level}</span>
-                            <div className={`w-16 h-2 rounded-full ${
-                              idx === 0 ? 'bg-gray-600' :
-                              idx === 1 ? 'bg-green-500' :
-                              idx === 2 ? 'bg-blue-500' :
-                              idx === 3 ? 'bg-purple-500' :
-                              'bg-gradient-to-r from-yellow-400 to-orange-500'
-                            }`} />
-                          </div>
+                      <h4 className="text-sm font-semibold text-neon-cyan mb-2">稀有度等级</h4>
+                      <div className="flex flex-wrap gap-1">
+                        {asset.rarity.map((rarity, idx) => (
+                          <span key={idx} className="text-xs bg-esports-purple/20 text-esports-purple rounded px-2 py-1">
+                            {rarity}
+                          </span>
                         ))}
                       </div>
                     </div>
+                    
+                    <div>
+                      <h4 className="text-sm font-semibold text-success-green mb-2">实用价值</h4>
+                      <p className="text-xs text-light-gray">{asset.utility}</p>
+                    </div>
                   </div>
-                ))}
-              </div>
-              
-              {/* NFT市场统计 */}
-              <div className="card-esports">
-                <h3 className="text-2xl font-semibold text-white mb-6 text-center">
-                  NFT市场实时数据
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-esports-gold mb-2">12,345</div>
-                    <div className="text-sm text-light-gray">总NFT数量</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Cross-chain Tab */}
+      {activeTab === 'cross-chain' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                跨链生态系统
+              </h2>
+              <p className="text-xl text-light-gray max-w-3xl mx-auto">
+                支持多条主流区块链，实现真正的跨链资产流通
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {crossChainEcosystem.map((chain, index) => (
+                <div key={index} className="card-esports text-center group hover:scale-105 transition-transform duration-300">
+                  <div className="text-6xl mb-4">{chain.logo}</div>
+                  <h3 className="text-lg font-semibold text-white mb-4">{chain.chain}</h3>
+                  
+                  <div className="space-y-3 mb-4">
+                    {chain.features.map((feature, idx) => (
+                      <div key={idx} className="text-sm text-light-gray bg-dark-gray/30 rounded px-3 py-1">
+                        {feature}
+                      </div>
+                    ))}
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-cyan mb-2">8,901</div>
-                    <div className="text-sm text-light-gray">活跃交易</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-esports-purple mb-2">567</div>
-                    <div className="text-sm text-light-gray">平均价格(MTP)</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-success-green mb-2">234</div>
-                    <div className="text-sm text-light-gray">质押收益率(%)</div>
-                  </div>
+                  
+                  <p className="text-xs text-neon-cyan">{chain.advantages}</p>
+                </div>
+              ))}
+            </div>
+            
+            <div className="card-esports text-center">
+              <h3 className="text-xl font-semibold text-white mb-4">跨链桥接技术</h3>
+              <p className="text-light-gray mb-6">
+                采用先进的跨链桥接技术，确保资产在不同区块链间安全、快速转移
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-success-green mb-2">99.9%</div>
+                  <div className="text-sm text-light-gray">安全性保障</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-esports-gold mb-2">&lt;5min</div>
+                  <div className="text-sm text-light-gray">跨链转移时间</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-neon-cyan mb-2">$0.1</div>
+                  <div className="text-sm text-light-gray">平均手续费</div>
                 </div>
               </div>
             </div>
-          )}
+          </div>
+        </section>
+      )}
 
-          {/* 跨链生态 */}
-          {activeTab === 'crosschain' && (
-            <div className="space-y-12">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  跨链生态系统
-                </h2>
-                <p className="text-xl text-light-gray max-w-3xl mx-auto">
-                  多链兼容的基础设施，实现资产自由流转和统一身份管理
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* 支持的区块链 */}
-                <div>
-                  <h3 className="text-2xl font-semibold text-white mb-6 flex items-center">
-                    <Globe className="w-6 h-6 mr-2 text-neon-cyan" />
-                    支持的区块链
-                  </h3>
-                  <div className="space-y-4">
-                    {crosschainSupport.map((chain, index) => (
-                      <div key={index} className="card-esports">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-purple-cyan rounded-lg flex items-center justify-center">
-                              <span className="text-white font-bold text-sm">
-                                {chain.name.charAt(0)}
-                              </span>
-                            </div>
-                            <span className="font-semibold text-white">{chain.name}</span>
-                          </div>
-                          <span className={`text-sm font-medium ${chain.color}`}>
-                            {chain.status}
-                          </span>
-                        </div>
+      {/* Ecosystem Games */}
+      <section className="py-20 bg-dark-gray/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              生态游戏
+            </h2>
+            <p className="text-xl text-light-gray">
+              多样化的游戏类型，满足不同玩家的需求
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {ecosystemGames.map((game, index) => (
+              <div key={index} className="card-esports group hover:scale-105 transition-transform duration-300">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">{game.name}</h3>
+                    <p className="text-esports-gold text-sm">{game.genre}</p>
+                  </div>
+                  <div className="text-right">
+                    <div className={`text-sm px-3 py-1 rounded-full ${
+                      game.status === '已上线' ? 'bg-success-green/20 text-success-green' :
+                      game.status === '测试中' ? 'bg-esports-gold/20 text-esports-gold' :
+                      'bg-neon-cyan/20 text-neon-cyan'
+                    }`}>
+                      {game.status}
+                    </div>
+                    <div className="text-light-gray text-xs mt-1">{game.players}</div>
+                  </div>
+                </div>
+                
+                <p className="text-light-gray mb-6">{game.description}</p>
+                
+                <div className="space-y-2">
+                  <h4 className="text-sm font-semibold text-white">核心特性</h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    {game.features.map((feature, idx) => (
+                      <div key={idx} className="text-xs text-light-gray bg-dark-gray/30 rounded px-2 py-1">
+                        {feature}
                       </div>
                     ))}
                   </div>
                 </div>
                 
-                {/* 跨链功能 */}
-                <div>
-                  <h3 className="text-2xl font-semibold text-white mb-6 flex items-center">
-                    <Coins className="w-6 h-6 mr-2 text-esports-gold" />
-                    跨链功能
-                  </h3>
-                  <div className="space-y-6">
-                    <div className="card-esports">
-                      <h4 className="font-semibold text-white mb-2">资产桥接</h4>
-                      <p className="text-light-gray text-sm mb-3">
-                        安全快速的跨链资产转移，支持MTP代币和NFT资产
-                      </p>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-light-gray">手续费</span>
-                        <span className="text-neon-cyan">0.1%</span>
-                      </div>
-                    </div>
-                    
-                    <div className="card-esports">
-                      <h4 className="font-semibold text-white mb-2">统一身份</h4>
-                      <p className="text-light-gray text-sm mb-3">
-                        跨链身份认证系统，一个账户管理所有链上资产
-                      </p>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-light-gray">支持链数</span>
-                        <span className="text-esports-gold">6+</span>
-                      </div>
-                    </div>
-                    
-                    <div className="card-esports">
-                      <h4 className="font-semibold text-white mb-2">流动性挖矿</h4>
-                      <p className="text-light-gray text-sm mb-3">
-                        提供跨链流动性，获得MTP代币奖励
-                      </p>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-light-gray">年化收益</span>
-                        <span className="text-success-green">15-25%</span>
-                      </div>
-                    </div>
-                  </div>
+                <div className="mt-6">
+                  <button className="w-full btn-neon group">
+                    {game.status === '已上线' ? '立即游戏' : 
+                     game.status === '测试中' ? '申请测试' : '预约游戏'}
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
-            </div>
-          )}
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-esports-purple/20 to-neon-cyan/20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            开启你的GameFi之旅
+          </h2>
+          <p className="text-xl text-light-gray mb-8">
+            加入METATOPIA生态，体验AI驱动的下一代游戏经济
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="btn-neon">
+              <Play className="w-5 h-5 mr-2" />
+              开始游戏
+            </button>
+            <button className="px-6 py-3 border border-light-gray/30 rounded-lg hover:border-neon-cyan transition-colors duration-300">
+              了解更多
+            </button>
+          </div>
         </div>
       </section>
     </div>
