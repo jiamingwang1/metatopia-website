@@ -1,108 +1,138 @@
 'use client'
 
-import { useState } from 'react'
-import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Twitter, Github, Linkedin, Globe, Users, Headphones, FileText, Zap } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Users, Globe, Twitter, Linkedin, Github, Discord, Telegram } from 'lucide-react'
 
 const ContactPage = () => {
+  const [mounted, setMounted] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    company: '',
     subject: '',
     category: 'general',
-    message: '',
-    newsletter: false
+    message: ''
   })
-
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState('')
 
-  const contactMethods = [
-    {
-      icon: Mail,
-      title: '邮箱联系',
-      description: '发送邮件给我们的团队',
-      contact: 'hello@metatopia.io',
-      action: 'mailto:hello@metatopia.io',
-      color: 'text-neon-cyan'
-    },
-    {
-      icon: MessageCircle,
-      title: '在线客服',
-      description: '7x24小时在线支持',
-      contact: '立即开始对话',
-      action: '#',
-      color: 'text-esports-purple'
-    },
-    {
-      icon: Phone,
-      title: '电话咨询',
-      description: '工作日 9:00-18:00',
-      contact: '+86 400-888-0000',
-      action: 'tel:+8640088800000',
-      color: 'text-success-green'
-    },
-    {
-      icon: MapPin,
-      title: '办公地址',
-      description: '欢迎预约参观',
-      contact: '上海市浦东新区张江高科技园区',
-      action: '#',
-      color: 'text-esports-gold'
-    }
-  ]
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const contactInfo = {
+    email: 'hello@metatopia.io',
+    business: 'business@metatopia.io',
+    support: 'support@metatopia.io',
+    press: 'press@metatopia.io',
+    phone: '+1 (555) 123-4567',
+    address: '新加坡滨海湾金融中心 Tower 1, Level 30',
+    hours: '周一至周五 9:00-18:00 (SGT)'
+  }
 
   const socialLinks = [
-    { icon: Twitter, label: 'Twitter', url: 'https://twitter.com/metatopia', color: 'hover:text-blue-400' },
-    { icon: Github, label: 'GitHub', url: 'https://github.com/metatopia', color: 'hover:text-gray-400' },
-    { icon: Linkedin, label: 'LinkedIn', url: 'https://linkedin.com/company/metatopia', color: 'hover:text-blue-600' },
-    { icon: Globe, label: 'Website', url: 'https://metatopia.io', color: 'hover:text-neon-cyan' }
+    {
+      name: 'Twitter',
+      icon: Twitter,
+      url: 'https://twitter.com/metatopia',
+      followers: '125K',
+      description: '最新动态和公告'
+    },
+    {
+      name: 'Discord',
+      icon: Discord,
+      url: 'https://discord.gg/metatopia',
+      followers: '89K',
+      description: '社区讨论和支持'
+    },
+    {
+      name: 'Telegram',
+      icon: Telegram,
+      url: 'https://t.me/metatopia',
+      followers: '67K',
+      description: '官方公告频道'
+    },
+    {
+      name: 'LinkedIn',
+      icon: Linkedin,
+      url: 'https://linkedin.com/company/metatopia',
+      followers: '45K',
+      description: '商业合作和招聘'
+    },
+    {
+      name: 'GitHub',
+      icon: Github,
+      url: 'https://github.com/metatopia',
+      followers: '23K',
+      description: '开源代码和文档'
+    }
   ]
 
   const contactCategories = [
     { value: 'general', label: '一般咨询', icon: MessageCircle },
-    { value: 'partnership', label: '商务合作', icon: Users },
-    { value: 'support', label: '技术支持', icon: Headphones },
-    { value: 'media', label: '媒体采访', icon: FileText },
-    { value: 'investment', label: '投资相关', icon: Zap }
+    { value: 'business', label: '商业合作', icon: Users },
+    { value: 'technical', label: '技术支持', icon: Globe },
+    { value: 'press', label: '媒体采访', icon: Mail },
+    { value: 'careers', label: '招聘相关', icon: Users }
   ]
 
   const offices = [
     {
-      city: '上海总部',
-      address: '上海市浦东新区张江高科技园区科苑路399号',
-      phone: '+86 21-5888-0000',
-      email: 'shanghai@metatopia.io',
-      hours: '周一至周五 9:00-18:00'
+      city: '新加坡',
+      address: '滨海湾金融中心 Tower 1, Level 30',
+      type: '总部',
+      timezone: 'SGT (UTC+8)',
+      phone: '+65 6123 4567',
+      email: 'singapore@metatopia.io'
     },
     {
-      city: '北京分部',
-      address: '北京市海淀区中关村软件园二期',
-      phone: '+86 10-8888-0000',
-      email: 'beijing@metatopia.io',
-      hours: '周一至周五 9:00-18:00'
+      city: '旧金山',
+      address: '101 California Street, Suite 2450',
+      type: '北美办公室',
+      timezone: 'PST (UTC-8)',
+      phone: '+1 (415) 123-4567',
+      email: 'sf@metatopia.io'
     },
     {
-      city: '深圳分部',
-      address: '深圳市南山区科技园南区高新南七道',
-      phone: '+86 755-8888-0000',
-      email: 'shenzhen@metatopia.io',
-      hours: '周一至周五 9:00-18:00'
+      city: '伦敦',
+      address: '1 Canada Square, Canary Wharf',
+      type: '欧洲办公室',
+      timezone: 'GMT (UTC+0)',
+      phone: '+44 20 1234 5678',
+      email: 'london@metatopia.io'
     },
     {
-      city: '新加坡办事处',
-      address: '1 Raffles Place, #20-61, One Raffles Place',
-      phone: '+65 6888-0000',
-      email: 'singapore@metatopia.io',
-      hours: 'Mon-Fri 9:00-18:00'
+      city: '东京',
+      address: '東京都港区六本木 1-6-1',
+      type: '亚太办公室',
+      timezone: 'JST (UTC+9)',
+      phone: '+81 3 1234 5678',
+      email: 'tokyo@metatopia.io'
+    }
+  ]
+
+  const faqs = [
+    {
+      question: '如何开始使用METATOPIA？',
+      answer: '您可以访问我们的官网下载钱包，创建账户后即可开始体验我们的GameFi生态系统。'
+    },
+    {
+      question: '如何获得MTP代币？',
+      answer: 'MTP代币可以通过参与游戏、质押、流动性挖矿或在支持的交易所购买获得。'
+    },
+    {
+      question: '如何成为合作伙伴？',
+      answer: '请通过business@metatopia.io联系我们的商务团队，我们将为您提供详细的合作方案。'
+    },
+    {
+      question: '技术问题如何获得支持？',
+      answer: '您可以通过Discord社区、邮件或在线客服获得技术支持，我们的团队会及时回复。'
     }
   ]
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target
+    const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: value
     }))
   }
 
@@ -111,82 +141,50 @@ const ContactPage = () => {
     setIsSubmitting(true)
     
     // 模拟表单提交
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        subject: '',
-        category: 'general',
-        message: '',
-        newsletter: false
-      })
-      
-      setTimeout(() => setSubmitStatus(''), 3000)
-    }, 2000)
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    
+    alert('感谢您的留言！我们会在24小时内回复您。')
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      category: 'general',
+      message: ''
+    })
+    setIsSubmitting(false)
+  }
+
+  if (!mounted) {
+    return <div className="min-h-screen bg-space-blue" />
   }
 
   return (
-    <div className="pt-16 min-h-screen">
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="py-20 particles-container">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gradient mb-6">
-            联系我们
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-esports-purple/20 via-transparent to-neon-cyan/20" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            联系 <span className="text-gradient">我们</span>
           </h1>
-          <p className="text-xl md:text-2xl text-light-gray mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-light-gray mb-8 max-w-4xl mx-auto">
             有任何问题或建议？我们很乐意听到您的声音
           </p>
         </div>
       </section>
 
-      {/* Contact Methods */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {contactMethods.map((method, index) => {
-              const Icon = method.icon
-              return (
-                <a
-                  key={index}
-                  href={method.action}
-                  className="card-esports group hover:scale-105 transition-all duration-300 text-center"
-                >
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-purple-cyan flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                    <Icon className={`w-8 h-8 ${method.color}`} />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{method.title}</h3>
-                  <p className="text-light-gray text-sm mb-3">{method.description}</p>
-                  <p className={`font-medium ${method.color} group-hover:text-white transition-colors`}>
-                    {method.contact}
-                  </p>
-                </a>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form & Info */}
-      <section className="py-16 bg-dark-gray/30">
+      {/* Contact Form and Info */}
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="card-esports">
               <h2 className="text-2xl font-bold text-white mb-6">发送消息</h2>
               
-              {submitStatus === 'success' && (
-                <div className="mb-6 p-4 bg-success-green/20 border border-success-green/50 rounded-lg">
-                  <p className="text-success-green">消息发送成功！我们会尽快回复您。</p>
-                </div>
-              )}
-              
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-light-gray mb-2">
+                    <label className="block text-sm font-medium text-white mb-2">
                       姓名 *
                     </label>
                     <input
@@ -195,12 +193,12 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-dark-gray/50 border border-dark-gray rounded-lg text-white placeholder-light-gray focus:outline-none focus:border-neon-cyan"
+                      className="w-full px-4 py-3 bg-dark-gray/50 border border-light-gray/20 rounded-lg text-white placeholder-light-gray focus:border-neon-cyan focus:outline-none"
                       placeholder="请输入您的姓名"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-light-gray mb-2">
+                    <label className="block text-sm font-medium text-white mb-2">
                       邮箱 *
                     </label>
                     <input
@@ -209,48 +207,32 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-dark-gray/50 border border-dark-gray rounded-lg text-white placeholder-light-gray focus:outline-none focus:border-neon-cyan"
+                      className="w-full px-4 py-3 bg-dark-gray/50 border border-light-gray/20 rounded-lg text-white placeholder-light-gray focus:border-neon-cyan focus:outline-none"
                       placeholder="请输入您的邮箱"
                     />
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-light-gray mb-2">
-                      公司/组织
-                    </label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-dark-gray/50 border border-dark-gray rounded-lg text-white placeholder-light-gray focus:outline-none focus:border-neon-cyan"
-                      placeholder="请输入公司或组织名称"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-light-gray mb-2">
-                      咨询类型 *
-                    </label>
-                    <select
-                      name="category"
-                      value={formData.category}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 bg-dark-gray/50 border border-dark-gray rounded-lg text-white focus:outline-none focus:border-neon-cyan"
-                    >
-                      {contactCategories.map((category) => (
-                        <option key={category.value} value={category.value}>
-                          {category.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    咨询类型
+                  </label>
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-dark-gray/50 border border-light-gray/20 rounded-lg text-white focus:border-neon-cyan focus:outline-none"
+                  >
+                    {contactCategories.map((category) => (
+                      <option key={category.value} value={category.value}>
+                        {category.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-light-gray mb-2">
+                  <label className="block text-sm font-medium text-white mb-2">
                     主题 *
                   </label>
                   <input
@@ -259,13 +241,13 @@ const ContactPage = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-dark-gray/50 border border-dark-gray rounded-lg text-white placeholder-light-gray focus:outline-none focus:border-neon-cyan"
-                    placeholder="请简要描述您的问题或需求"
+                    className="w-full px-4 py-3 bg-dark-gray/50 border border-light-gray/20 rounded-lg text-white placeholder-light-gray focus:border-neon-cyan focus:outline-none"
+                    placeholder="请简要描述您的问题"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-light-gray mb-2">
+                  <label className="block text-sm font-medium text-white mb-2">
                     详细信息 *
                   </label>
                   <textarea
@@ -274,102 +256,96 @@ const ContactPage = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 bg-dark-gray/50 border border-dark-gray rounded-lg text-white placeholder-light-gray focus:outline-none focus:border-neon-cyan resize-none"
-                    placeholder="请详细描述您的问题、建议或需求..."
+                    className="w-full px-4 py-3 bg-dark-gray/50 border border-light-gray/20 rounded-lg text-white placeholder-light-gray focus:border-neon-cyan focus:outline-none resize-none"
+                    placeholder="请详细描述您的问题或建议..."
                   />
-                </div>
-                
-                <div className="flex items-center space-x-3">
-                  <input
-                    type="checkbox"
-                    name="newsletter"
-                    id="newsletter"
-                    checked={formData.newsletter}
-                    onChange={handleInputChange}
-                    className="w-4 h-4 text-neon-cyan bg-dark-gray border-dark-gray rounded focus:ring-neon-cyan focus:ring-2"
-                  />
-                  <label htmlFor="newsletter" className="text-sm text-light-gray">
-                    订阅我们的新闻通讯，获取最新动态
-                  </label>
                 </div>
                 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-neon-glow flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full btn-neon disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      <span>发送中...</span>
-                    </>
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                      发送中...
+                    </div>
                   ) : (
                     <>
-                      <Send className="w-5 h-5" />
-                      <span>发送消息</span>
+                      <Send className="w-4 h-4 mr-2" />
+                      发送消息
                     </>
                   )}
                 </button>
               </form>
             </div>
             
-            {/* Contact Info */}
+            {/* Contact Information */}
             <div className="space-y-8">
-              {/* Office Hours */}
+              {/* Quick Contact */}
               <div className="card-esports">
-                <h3 className="text-xl font-semibold text-white mb-4 flex items-center space-x-2">
-                  <Clock className="w-5 h-5 text-neon-cyan" />
-                  <span>工作时间</span>
-                </h3>
-                <div className="space-y-2 text-light-gray">
-                  <p><span className="font-medium text-white">周一至周五:</span> 9:00 - 18:00</p>
-                  <p><span className="font-medium text-white">周六:</span> 10:00 - 16:00</p>
-                  <p><span className="font-medium text-white">周日:</span> 休息</p>
-                  <p className="text-sm mt-3 text-neon-cyan">* 在线客服7x24小时为您服务</p>
-                </div>
-              </div>
-              
-              {/* Social Links */}
-              <div className="card-esports">
-                <h3 className="text-xl font-semibold text-white mb-4">关注我们</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon
-                    return (
-                      <a
-                        key={index}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center space-x-3 p-3 bg-dark-gray/50 rounded-lg hover:bg-dark-gray/70 transition-all duration-300 ${social.color}`}
-                      >
-                        <Icon className="w-5 h-5" />
-                        <span className="text-sm font-medium">{social.label}</span>
-                      </a>
-                    )
-                  })}
-                </div>
-              </div>
-              
-              {/* Quick Response */}
-              <div className="card-esports">
-                <h3 className="text-xl font-semibold text-white mb-4">快速响应承诺</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-light-gray">一般咨询</span>
-                    <span className="text-success-green font-medium">24小时内</span>
+                <h3 className="text-xl font-bold text-white mb-6">快速联系</h3>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-purple-cyan flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">邮箱</div>
+                      <div className="text-light-gray text-sm">{contactInfo.email}</div>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between">
+                  
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-purple-cyan flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">电话</div>
+                      <div className="text-light-gray text-sm">{contactInfo.phone}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-purple-cyan flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">地址</div>
+                      <div className="text-light-gray text-sm">{contactInfo.address}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-purple-cyan flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">工作时间</div>
+                      <div className="text-light-gray text-sm">{contactInfo.hours}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Specialized Contacts */}
+              <div className="card-esports">
+                <h3 className="text-xl font-bold text-white mb-6">专门联系方式</h3>
+                
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-light-gray">商业合作</span>
+                    <span className="text-neon-cyan">{contactInfo.business}</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
                     <span className="text-light-gray">技术支持</span>
-                    <span className="text-success-green font-medium">4小时内</span>
+                    <span className="text-neon-cyan">{contactInfo.support}</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-light-gray">商务合作</span>
-                    <span className="text-success-green font-medium">48小时内</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-light-gray">紧急问题</span>
-                    <span className="text-success-green font-medium">1小时内</span>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-light-gray">媒体采访</span>
+                    <span className="text-neon-cyan">{contactInfo.press}</span>
                   </div>
                 </div>
               </div>
@@ -378,33 +354,70 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Office Locations */}
-      <section className="py-16">
+      {/* Social Media */}
+      <section className="py-20 bg-dark-gray/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">
-            全球办公室
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">关注我们</h2>
+            <p className="text-light-gray">通过社交媒体获取最新动态</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {socialLinks.map((social, index) => {
+              const Icon = social.icon
+              return (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-esports text-center group hover:scale-105 transition-transform duration-300"
+                >
+                  <div className="w-16 h-16 rounded-xl bg-gradient-purple-cyan flex items-center justify-center mx-auto mb-4 group-hover:animate-pulse">
+                    <Icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-white font-semibold mb-2">{social.name}</h3>
+                  <div className="text-esports-gold font-medium mb-2">{social.followers}</div>
+                  <p className="text-light-gray text-sm">{social.description}</p>
+                </a>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Global Offices */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">全球办公室</h2>
+            <p className="text-light-gray">我们在全球主要城市设有办公室</p>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {offices.map((office, index) => (
               <div key={index} className="card-esports">
-                <h3 className="text-lg font-semibold text-white mb-3">{office.city}</h3>
-                <div className="space-y-2 text-sm">
+                <div className="text-center mb-4">
+                  <h3 className="text-lg font-semibold text-white mb-1">{office.city}</h3>
+                  <span className="text-esports-gold text-sm">{office.type}</span>
+                </div>
+                
+                <div className="space-y-3 text-sm">
                   <div className="flex items-start space-x-2">
                     <MapPin className="w-4 h-4 text-neon-cyan mt-0.5 flex-shrink-0" />
                     <span className="text-light-gray">{office.address}</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Phone className="w-4 h-4 text-esports-purple" />
+                    <Clock className="w-4 h-4 text-neon-cyan" />
+                    <span className="text-light-gray">{office.timezone}</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Phone className="w-4 h-4 text-neon-cyan" />
                     <span className="text-light-gray">{office.phone}</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Mail className="w-4 h-4 text-success-green" />
+                    <Mail className="w-4 h-4 text-neon-cyan" />
                     <span className="text-light-gray">{office.email}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Clock className="w-4 h-4 text-esports-gold" />
-                    <span className="text-light-gray">{office.hours}</span>
                   </div>
                 </div>
               </div>
@@ -413,37 +426,51 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 bg-dark-gray/30">
+      {/* FAQ */}
+      <section className="py-20 bg-dark-gray/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">
-            常见问题
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">常见问题</h2>
+            <p className="text-light-gray">快速找到您需要的答案</p>
+          </div>
           
           <div className="space-y-4">
-            {[
-              {
-                question: '如何参与METATOPIA的测试版本？',
-                answer: '您可以通过官网注册测试资格，我们会根据测试进度分批邀请用户参与。'
-              },
-              {
-                question: 'MTP代币什么时候上线交易所？',
-                answer: '我们正在与多家顶级交易所洽谈，具体上线时间请关注官方公告。'
-              },
-              {
-                question: '如何成为METATOPIA的合作伙伴？',
-                answer: '请通过商务合作邮箱联系我们，或填写上方表单选择"商务合作"类型。'
-              },
-              {
-                question: '平台支持哪些游戏类型？',
-                answer: '目前主要支持MOBA、FPS、RTS等竞技类游戏，未来会扩展到更多游戏类型。'
-              }
-            ].map((faq, index) => (
+            {faqs.map((faq, index) => (
               <div key={index} className="card-esports">
-                <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
-                <p className="text-light-gray">{faq.answer}</p>
+                <h3 className="text-lg font-semibold text-white mb-3">{faq.question}</h3>
+                <p className="text-light-gray leading-relaxed">{faq.answer}</p>
               </div>
             ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <p className="text-light-gray mb-4">没有找到您要的答案？</p>
+            <button className="btn-neon">
+              <MessageCircle className="w-4 h-4 mr-2" />
+              联系客服
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-esports-purple/20 to-neon-cyan/20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            准备开始了吗？
+          </h2>
+          <p className="text-xl text-light-gray mb-8">
+            加入METATOPIA生态系统，体验GameFi的无限可能
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="btn-neon">
+              <Globe className="w-5 h-5 mr-2" />
+              开始体验
+            </button>
+            <button className="px-6 py-3 border border-light-gray/30 rounded-lg hover:border-neon-cyan transition-colors duration-300">
+              下载白皮书
+            </button>
           </div>
         </div>
       </section>
