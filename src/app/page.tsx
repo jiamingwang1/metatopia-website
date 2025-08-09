@@ -81,7 +81,7 @@ const HomePage = () => {
             {/* Logo */}
             <div className="mb-8">
               <div className="w-24 h-24 md:w-32 md:h-32 mx-auto rounded-2xl overflow-hidden shadow-2xl shadow-esports-purple/50">
-                <img src="/logo.jpg" alt="METATOPIA Logo" className="w-full h-full object-cover" />
+                <img src="/logo.svg" alt="METATOPIA Logo" className="w-full h-full object-cover" />
               </div>
             </div>
             
@@ -99,28 +99,42 @@ const HomePage = () => {
               <span className="text-esports-purple">链上经济</span>的下一代GameFi平台
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Link href="/whitepaper" className="btn-neon group">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Link href="/whitepaper" className="btn-primary group">
                 查看白皮书
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              
-              <button className="flex items-center space-x-2 px-6 py-3 border border-light-gray/30 rounded-lg hover:border-neon-cyan transition-colors duration-300">
-                <Play className="w-5 h-5" />
-                <span>观看介绍视频</span>
+              <button className="btn-secondary group">
+                <Play className="mr-2 h-5 w-5" />
+                观看演示
               </button>
             </div>
           </div>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        </div>
+        
+        {/* Floating particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="particle particle-1"></div>
+          <div className="particle particle-2"></div>
+          <div className="particle particle-3"></div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-gradient-to-r from-space-blue via-dark-blue to-space-blue">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="card-esports text-center">
-                <div className="text-2xl md:text-3xl font-bold text-gradient mb-2">
+              <div key={index} className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-light-gray">{stat.label}</div>
-                <div className="text-xs text-esports-gold">{stat.unit}</div>
+                <div className="text-light-gray text-sm md:text-base">
+                  {stat.label}
+                </div>
+                <div className="text-neon-cyan text-xs md:text-sm">
+                  {stat.unit}
+                </div>
               </div>
             ))}
           </div>
@@ -128,29 +142,29 @@ const HomePage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-dark-gray/30">
+      <section className="py-20 bg-space-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              核心特色
+              核心<span className="text-gradient">特性</span>
             </h2>
-            <p className="text-xl text-light-gray max-w-2xl mx-auto">
-              AI × 电竞 × GameFi 的完美融合，打造前所未有的游戏体验
+            <p className="text-light-gray text-lg max-w-2xl mx-auto">
+              METATOPIA将AI技术、电竞竞技与区块链经济完美融合
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => {
-              const Icon = feature.icon
+              const IconComponent = feature.icon
               return (
-                <div key={index} className="card-esports group hover:scale-105 transition-transform duration-300">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-purple-cyan flex items-center justify-center mb-4 group-hover:animate-pulse`}>
-                    <Icon className={`w-6 h-6 ${feature.color}`} />
+                <div key={index} className="feature-card group">
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br from-esports-purple to-neon-cyan flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                    <IconComponent className="h-6 w-6 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-light-gray">
+                  <p className="text-light-gray text-sm leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -160,111 +174,133 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Tokenomics Preview */}
-      <section className="py-20">
+      {/* Ecosystem Section */}
+      <section className="py-20 bg-gradient-to-br from-dark-blue via-space-blue to-dark-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                MTP代币经济
-              </h2>
-              <p className="text-xl text-light-gray mb-8">
-                总量10亿枚的MTP代币，支撑整个GameFi生态的价值流转
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              生态<span className="text-gradient">系统</span>
+            </h2>
+            <p className="text-light-gray text-lg max-w-2xl mx-auto">
+              构建完整的AI×电竞×GameFi生态闭环
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link href="/gamefi" className="ecosystem-card group">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-esports-gold to-esports-purple flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Trophy className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">GameFi生态</h3>
+              <p className="text-light-gray mb-6">
+                多款链游集成，跨游戏资产互通，真正的Play-to-Earn体验
               </p>
-              
-              <div className="space-y-4 mb-8">
-                <div className="flex justify-between items-center p-4 bg-dark-gray/50 rounded-lg">
-                  <span className="text-white">游戏支付</span>
-                  <span className="text-esports-gold">✓</span>
-                </div>
-                <div className="flex justify-between items-center p-4 bg-dark-gray/50 rounded-lg">
-                  <span className="text-white">赛事奖励</span>
-                  <span className="text-neon-cyan">✓</span>
-                </div>
-                <div className="flex justify-between items-center p-4 bg-dark-gray/50 rounded-lg">
-                  <span className="text-white">质押挖矿</span>
-                  <span className="text-esports-purple">✓</span>
-                </div>
-                <div className="flex justify-between items-center p-4 bg-dark-gray/50 rounded-lg">
-                  <span className="text-white">DAO治理</span>
-                  <span className="text-success-green">✓</span>
-                </div>
+              <div className="flex items-center text-neon-cyan group-hover:translate-x-2 transition-transform">
+                <span>了解更多</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
               </div>
-              
-              <Link href="/about" className="btn-neon">
-                了解更多
-              </Link>
-            </div>
+            </Link>
             
-            <div className="relative">
-              <div className="w-80 h-80 mx-auto relative">
-                {/* 简化的饼图展示 */}
-                <div className="w-full h-full rounded-full bg-gradient-to-r from-esports-purple via-neon-cyan to-esports-gold animate-spin-slow" style={{animationDuration: '20s'}}>
-                  <div className="absolute inset-4 bg-space-blue rounded-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-gradient">10亿</div>
-                      <div className="text-sm text-light-gray">MTP代币</div>
-                    </div>
-                  </div>
-                </div>
+            <Link href="/dao" className="ecosystem-card group">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-cyan to-esports-purple flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Users className="h-8 w-8 text-white" />
               </div>
-            </div>
+              <h3 className="text-2xl font-bold text-white mb-4">DAO治理</h3>
+              <p className="text-light-gray mb-6">
+                社区驱动的去中心化治理，每个持币者都有决策权
+              </p>
+              <div className="flex items-center text-neon-cyan group-hover:translate-x-2 transition-transform">
+                <span>参与治理</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </div>
+            </Link>
+            
+            <Link href="/roadmap" className="ecosystem-card group">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-esports-purple to-esports-gold flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Globe className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">发展路线</h3>
+              <p className="text-light-gray mb-6">
+                清晰的发展规划，从MVP到全球化部署的完整路径
+              </p>
+              <div className="flex items-center text-neon-cyan group-hover:translate-x-2 transition-transform">
+                <span>查看路线图</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </div>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Latest News */}
-      <section className="py-20 bg-dark-gray/30">
+      {/* News Section */}
+      <section className="py-20 bg-space-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              最新动态
-            </h2>
-            <Link href="/news" className="text-neon-cyan hover:text-esports-gold transition-colors duration-200">
-              查看全部 →
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                最新<span className="text-gradient">动态</span>
+              </h2>
+              <p className="text-light-gray text-lg">
+                关注METATOPIA的最新发展
+              </p>
+            </div>
+            <Link href="/news" className="btn-secondary hidden md:flex">
+              查看全部
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {news.map((item, index) => (
-              <article key={index} className="card-esports group cursor-pointer">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs px-2 py-1 bg-esports-purple/20 text-esports-purple rounded">
+              <article key={index} className="news-card group">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="px-3 py-1 bg-esports-purple/20 text-esports-purple text-sm rounded-full">
                     {item.category}
                   </span>
-                  <span className="text-xs text-light-gray">{item.date}</span>
+                  <span className="text-light-gray text-sm">
+                    {item.date}
+                  </span>
                 </div>
-                
-                <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-neon-cyan transition-colors duration-200">
+                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-neon-cyan transition-colors">
                   {item.title}
                 </h3>
-                
-                <p className="text-light-gray text-sm">
+                <p className="text-light-gray text-sm leading-relaxed mb-4">
                   {item.excerpt}
                 </p>
+                <div className="flex items-center text-neon-cyan text-sm group-hover:translate-x-1 transition-transform">
+                  <span>阅读更多</span>
+                  <ArrowRight className="ml-1 h-3 w-3" />
+                </div>
               </article>
             ))}
+          </div>
+          
+          <div className="text-center mt-8 md:hidden">
+            <Link href="/news" className="btn-secondary">
+              查看全部动态
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-r from-esports-purple via-neon-cyan to-esports-gold">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             准备好进入METATOPIA了吗？
           </h2>
-          <p className="text-xl text-light-gray mb-8">
-            加入我们的社区，成为下一代GameFi革命的一部分
+          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+            加入我们的社区，成为AI×电竞×GameFi革命的先行者
           </p>
-          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/whitepaper" className="btn-neon">
-              <Download className="w-5 h-5 mr-2" />
+            <Link href="/whitepaper" className="bg-white text-esports-purple px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center">
+              <Download className="mr-2 h-5 w-5" />
               下载白皮书
             </Link>
-            <Link href="/contact" className="px-6 py-3 border border-light-gray/30 rounded-lg hover:border-neon-cyan transition-colors duration-300">
+            <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-esports-purple transition-colors flex items-center justify-center">
               联系我们
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
         </div>
