@@ -2,97 +2,191 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    @apply bg-space-blue text-white;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  }
-  
-  /* 中文字体 */
-  .font-chinese {
-    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-  }
+/* 基础样式 */
+html {
+  scroll-behavior: smooth;
 }
 
-@layer components {
-  /* 霓虹发光按钮 */
-  .btn-neon {
-    @apply px-6 py-3 bg-gradient-purple-cyan text-white font-semibold rounded-lg;
-    @apply hover:shadow-lg hover:shadow-neon-cyan/50 transition-all duration-300;
-    @apply border border-neon-cyan/30 hover:border-neon-cyan;
-  }
-  
-  /* 电竞风格卡片 */
-  .card-esports {
-    @apply bg-dark-gray/80 backdrop-blur-sm border border-esports-purple/30;
-    @apply rounded-xl p-6 hover:border-esports-purple/60 transition-all duration-300;
-    @apply hover:shadow-lg hover:shadow-esports-purple/20;
-  }
-  
-  /* 科技网格背景 */
-  .tech-grid-bg {
-    background-image: 
-      linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
-  
-  /* 粒子动画容器 */
-  .particles-container {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .particles-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
-    animation: float 8s ease-in-out infinite;
-    pointer-events: none;
-  }
+body {
+  background-color: #0a0e1a;
+  color: white;
+  font-family: 'Inter', sans-serif;
 }
 
-@layer utilities {
-  /* 文本渐变 */
-  .text-gradient {
-    @apply bg-gradient-purple-cyan bg-clip-text text-transparent;
-  }
-  
-  /* 霓虹文字效果 */
-  .text-neon {
-    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
-  }
-  
-  /* 滚动条样式 */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-    scrollbar-color: #6366f1 #1f2937;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: #1f2937;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: #6366f1;
-    border-radius: 3px;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: #8b5cf6;
-  }
+/* 组件样式 */
+.btn-neon {
+  @apply px-6 py-3 bg-gradient-purple-cyan text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.btn-neon:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 40px rgba(6, 182, 212, 0.3);
+}
+
+.card-esports {
+  @apply bg-dark-gray/50 backdrop-blur-sm border border-light-gray/10 rounded-xl p-6 hover:border-esports-purple/50 transition-all duration-300;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-esports:hover {
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
+}
+
+.tech-grid {
+  background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%238b5cf6" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+}
+
+.particles-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.particles-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+  animation: float 8s ease-in-out infinite;
+}
+
+/* 实用工具样式 */
+.text-gradient {
+  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neon-text {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1d29;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #06b6d4, #fbbf24);
+}
+
+/* 白皮书页面样式 */
+.whitepaper-content {
+  @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.whitepaper-content h1 {
+  @apply text-3xl md:text-4xl font-bold text-white mb-6 text-center;
+}
+
+.whitepaper-content h2 {
+  @apply text-2xl md:text-3xl font-bold text-white mb-4 mt-8;
+}
+
+.whitepaper-content h3 {
+  @apply text-xl md:text-2xl font-semibold text-white mb-3 mt-6;
+}
+
+.whitepaper-content h4 {
+  @apply text-lg md:text-xl font-semibold text-white mb-2 mt-4;
+}
+
+.whitepaper-content p {
+  @apply text-light-gray mb-4 leading-relaxed;
+}
+
+.whitepaper-content ul, .whitepaper-content ol {
+  @apply text-light-gray mb-4 pl-6;
+}
+
+.whitepaper-content li {
+  @apply mb-2;
+}
+
+.whitepaper-content strong {
+  @apply text-white font-semibold;
+}
+
+.info-box {
+  @apply bg-dark-gray/50 border border-esports-purple/30 rounded-lg p-4 mb-6;
+}
+
+.info-box.warning {
+  @apply border-esports-gold/30 bg-esports-gold/5;
+}
+
+.info-box.success {
+  @apply border-success-green/30 bg-success-green/5;
+}
+
+.token-card {
+  @apply bg-gradient-purple-cyan p-6 rounded-xl text-white mb-4;
+}
+
+.data-table {
+  @apply w-full border-collapse border border-light-gray/20 rounded-lg overflow-hidden mb-6;
+}
+
+.data-table th {
+  @apply bg-dark-gray/70 text-white font-semibold p-3 border-b border-light-gray/20;
+}
+
+.data-table td {
+  @apply p-3 border-b border-light-gray/10 text-light-gray;
+}
+
+.roadmap-timeline {
+  @apply relative;
+}
+
+.roadmap-item {
+  @apply relative pl-8 pb-8;
+}
+
+.roadmap-item::before {
+  content: '';
+  @apply absolute left-0 top-2 w-4 h-4 rounded-full border-2;
+}
+
+.roadmap-item.completed::before {
+  @apply bg-success-green border-success-green;
+}
+
+.roadmap-item.current::before {
+  @apply bg-esports-gold border-esports-gold;
+}
+
+.roadmap-item.upcoming::before {
+  @apply bg-transparent border-light-gray;
+}
+
+.roadmap-item::after {
+  content: '';
+  @apply absolute left-2 top-6 w-0.5 h-full bg-light-gray/20;
+}
+
+.roadmap-item:last-child::after {
+  display: none;
+}
+
+.roadmap-content {
+  @apply bg-dark-gray/30 rounded-lg p-4;
+}
+
+.conclusion-section {
+  @apply bg-gradient-purple-cyan p-8 rounded-xl text-center text-white mt-12;
 }
