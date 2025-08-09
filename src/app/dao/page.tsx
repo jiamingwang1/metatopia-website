@@ -103,7 +103,7 @@ const DAOPage = () => {
     votingPower: {
       whales: 35, // >100k MTP
       dolphins: 25, // 10k-100k MTP
-      fish: 40 // <10k MTP
+      fish: 40 // less than 10k MTP
     }
   }
 
